@@ -3,12 +3,12 @@ settings:
     force: false
     interval: 0s
 server:
-  status: false
-  open: false
+  status: true
+  open: true
   port: 5002
   host: localhost
 schema:
-- name: app
+- name: http
   path: .
   commands:
     run:
@@ -16,10 +16,24 @@ schema:
   watcher:
     paths:
     - /
-    - ./../common
     extensions:
     - go
     - html
     - css
     - js
     - yaml
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
+    - console
+- name: console
+  path: ./console
+  commands:
+    install:
+      status: true
+  watcher:
+    paths:
+    - /console
+    extensions:
+    - go
